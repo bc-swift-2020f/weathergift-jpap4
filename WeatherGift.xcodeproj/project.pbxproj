@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		192C060A5FE929639AA5D324 /* libPods-WeatherGift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06CBD2389D71F0D870C22A2B /* libPods-WeatherGift.a */; };
 		8E0AC25D2534E66D00F15CA9 /* APIkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0AC25C2534E66D00F15CA9 /* APIkeys.swift */; };
+		8E0AC25F2534FC3000F15CA9 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0AC25E2534FC3000F15CA9 /* LocationDetailViewController.swift */; };
 		8E88A7342534D638005B3914 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88A7332534D638005B3914 /* AppDelegate.swift */; };
 		8E88A7362534D638005B3914 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88A7352534D638005B3914 /* SceneDelegate.swift */; };
 		8E88A7382534D638005B3914 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88A7372534D638005B3914 /* LocationListViewController.swift */; };
@@ -23,6 +24,7 @@
 		49A6DA23356A5EF11AC1BBCA /* Pods-WeatherGift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherGift.debug.xcconfig"; path = "Target Support Files/Pods-WeatherGift/Pods-WeatherGift.debug.xcconfig"; sourceTree = "<group>"; };
 		68C6A71525E2B7BB79BCC080 /* Pods-WeatherGift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherGift.release.xcconfig"; path = "Target Support Files/Pods-WeatherGift/Pods-WeatherGift.release.xcconfig"; sourceTree = "<group>"; };
 		8E0AC25C2534E66D00F15CA9 /* APIkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIkeys.swift; sourceTree = "<group>"; };
+		8E0AC25E2534FC3000F15CA9 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		8E88A7302534D638005B3914 /* WeatherGift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherGift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E88A7332534D638005B3914 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E88A7352534D638005B3914 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				8E88A7332534D638005B3914 /* AppDelegate.swift */,
 				8E88A7352534D638005B3914 /* SceneDelegate.swift */,
 				8E88A7472534D65F005B3914 /* WeatherLocation.swift */,
+				8E0AC25E2534FC3000F15CA9 /* LocationDetailViewController.swift */,
 				8E88A7372534D638005B3914 /* LocationListViewController.swift */,
 				8E88A7392534D638005B3914 /* Main.storyboard */,
 				8E88A73C2534D63A005B3914 /* Assets.xcassets */,
@@ -216,6 +219,7 @@
 				8E88A7482534D65F005B3914 /* WeatherLocation.swift in Sources */,
 				8E0AC25D2534E66D00F15CA9 /* APIkeys.swift in Sources */,
 				8E88A7342534D638005B3914 /* AppDelegate.swift in Sources */,
+				8E0AC25F2534FC3000F15CA9 /* LocationDetailViewController.swift in Sources */,
 				8E88A7362534D638005B3914 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
