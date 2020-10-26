@@ -11,7 +11,7 @@ import UIKit
 private let dateFormatter: DateFormatter = {
     print("Created date formatter")
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "EEE, MMM d, h:mm aaa"
+    dateFormatter.dateFormat = "EEEE, MMM d, h:mm aaa"
     return dateFormatter
 }()
 
@@ -49,7 +49,7 @@ class LocationDetailViewController: UIViewController {
                 self.placeLabel.text = self.weatherDetail.name
                 self.temperatureLabel.text = "\(self.weatherDetail.temperature)"
                 self.summaryLabel.text = "\(self.weatherDetail.summary)"
-                self.imageView.image = UIImage(named: self.weatherDetail.dailyIcon)
+                self.imageView.image = UIImage(named: self.weatherDetail.dayIcon)
             }
         }
     }
