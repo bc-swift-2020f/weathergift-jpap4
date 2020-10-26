@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 private let dateFormatter: DateFormatter = {
     print("Created date formatter")
@@ -27,16 +28,11 @@ class LocationDetailViewController: UIViewController {
     
     var weatherDetail: WeatherDetail!
     var locationIndex = 0
+    var locationManager: CLLocationManager!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         clearUserInterface()
         
         tableView.delegate = self
@@ -44,8 +40,12 @@ class LocationDetailViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        if locationIndex == 0 {
+            getLocation()
+        }
+        
         updateUserInterface()
-
+        
     }
     
     func clearUserInterface () {
@@ -54,7 +54,7 @@ class LocationDetailViewController: UIViewController {
         temperatureLabel.text = ""
         summaryLabel.text = ""
         imageView.image = UIImage()
-
+        
     }
     
     func updateUserInterface() {
@@ -118,7 +118,7 @@ extension LocationDetailViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DailyTableViewCell
         cell.dailyWeather = weatherDetail.dailyWeatherData[indexPath.row]
         return cell
-}
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -126,14 +126,71 @@ extension LocationDetailViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 extension LocationDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return weatherDetail.hourlyWeatherData.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return weatherDetail.hourlyWeatherData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let hourlyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourlyCell", for: indexPath) as! HourlyCollectionViewCell
+        hourlyCell.hourlyWeather = weatherDetail.hourlyWeatherData[indexPath.row]
+        return hourlyCell
+    }
+    
 }
 
-func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let hourlyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourlyCell", for: indexPath) as! HourlyCollectionViewCell
-    hourlyCell.hourlyWeather = weatherDetail.hourlyWeatherData[indexPath.row]
-    return hourlyCell
-}
+extension LocationDetailViewController: CLLocationManagerDelegate {
+    
+    func getLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("checking auth. status")
+        handleAuthenticationStatus(status: status)
+    }
+    
+    func handleAuthenticationStatus(status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            self.oneButtonAlert(title: "location services denied", message: "parental controls resricting access?")
+        case .denied:
+            break
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        @unknown default:
+            print("unknown case of status handleAuthenticationStatus\(status)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let currentLocation = locations.last ?? CLLocation()
+        print("updating location is \(currentLocation.coordinate.latitude), \(currentLocation.coordinate.longitude)")
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+            var locationName = ""
+            if placemarks != nil {
+                let placemark = placemarks?.last
+                locationName = placemark?.name ?? "Parts Unknown"
+            } else {
+                print("error")
+                locationName = "Could not find location"
+            }
+            print("locationName = \(locationName)")
+            
+            let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
+            pageViewController.weatherLocations[self.locationIndex].latitude = currentLocation.coordinate.latitude
+            pageViewController.weatherLocations[self.locationIndex].longitude = currentLocation.coordinate.longitude
+            pageViewController.weatherLocations[self.locationIndex].name = locationName
+                self.updateUserInterface()
 
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("ERROR: \(error.localizedDescription), failed to get device loaction")
+    }
 }
