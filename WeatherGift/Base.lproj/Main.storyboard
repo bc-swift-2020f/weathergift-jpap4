@@ -30,11 +30,15 @@
                                     <constraint firstAttribute="height" constant="44" id="d24-Us-RWG"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="About" id="7Ig-W9-5hG"/>
+                                    <barButtonItem title="About" id="7Ig-W9-5hG">
+                                        <connections>
+                                            <segue destination="Ens-ZP-FeM" kind="presentation" id="zRl-r9-5uT"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fyr-h7-Q61"/>
                                     <barButtonItem style="plain" id="Mna-U4-0Gg">
                                         <pageControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="Ma0-mN-UgM">
-                                            <rect key="frame" x="81" y="4" width="157" height="37"/>
+                                            <rect key="frame" x="81.5" y="3.5" width="157" height="37"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="pageIndicatorTintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,7 +50,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Njo-oS-ZUK"/>
                                     <barButtonItem image="list.bullet" catalog="system" id="vvF-Iq-78H">
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="9qz-Tr-bXy"/>
+                                            <segue destination="BYZ-38-t0r" kind="presentation" identifier="ShowList" modalPresentationStyle="fullScreen" id="9qz-Tr-bXy"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -232,6 +236,77 @@
             </objects>
             <point key="canvasLocation" x="-684.375" y="100.35211267605634"/>
         </scene>
+        <!--About View Controller-->
+        <scene sceneID="7TI-Rv-nlv">
+            <objects>
+                <viewController id="Ens-ZP-FeM" customClass="AboutViewController" customModule="WeatherGift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lks-vm-kS8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0h-Si-1Oh">
+                                <rect key="frame" x="0.0" y="504" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Xi0-Sm-zLc"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Done" id="3U8-VB-xZL">
+                                        <connections>
+                                            <action selector="doneButtonPressed:" destination="Ens-ZP-FeM" id="wqS-4z-VT5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVq-Xu-lNZ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WeatherGift" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHP-ti-YTM">
+                                        <rect key="frame" x="25" y="8" width="270" height="88"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="45"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WeatherGift_logo" translatesAutoresizingMaskIntoConstraints="NO" id="TPm-ud-3gj">
+                                        <rect key="frame" x="8" y="104" width="304" height="177"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="powered_by_openweather" translatesAutoresizingMaskIntoConstraints="NO" id="axJ-uv-amg">
+                                        <rect key="frame" x="25" y="418" width="119" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Made with Love" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWI-vS-Z9U">
+                                        <rect key="frame" x="25" y="289" width="270" height="111"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="powered_by_google_on_white" translatesAutoresizingMaskIntoConstraints="NO" id="7lS-gl-dCS">
+                                        <rect key="frame" x="176" y="418" width="119" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YVq-Xu-lNZ" firstAttribute="top" secondItem="5Uw-fG-E6T" secondAttribute="top" id="1MM-aE-v6E"/>
+                            <constraint firstItem="Y0h-Si-1Oh" firstAttribute="trailing" secondItem="5Uw-fG-E6T" secondAttribute="trailing" id="Eze-a2-jP1"/>
+                            <constraint firstItem="Y0h-Si-1Oh" firstAttribute="top" secondItem="YVq-Xu-lNZ" secondAttribute="bottom" id="Fl2-uz-a9T"/>
+                            <constraint firstItem="5Uw-fG-E6T" firstAttribute="bottom" secondItem="Y0h-Si-1Oh" secondAttribute="bottom" id="Ora-va-dJ0"/>
+                            <constraint firstItem="5Uw-fG-E6T" firstAttribute="trailing" secondItem="YVq-Xu-lNZ" secondAttribute="trailing" id="Taf-wB-uTH"/>
+                            <constraint firstItem="YVq-Xu-lNZ" firstAttribute="leading" secondItem="5Uw-fG-E6T" secondAttribute="leading" id="bbv-JP-pHR"/>
+                            <constraint firstItem="Y0h-Si-1Oh" firstAttribute="leading" secondItem="5Uw-fG-E6T" secondAttribute="leading" id="xHV-oz-zuh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5Uw-fG-E6T"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CQx-Lq-XF0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-684.375" y="818.66197183098598"/>
+        </scene>
         <!--Location List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -311,8 +386,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="WeatherGift_logo" width="873" height="870"/>
         <image name="cloud" catalog="system" width="128" height="87"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
+        <image name="powered_by_google_on_white" width="144" height="18"/>
+        <image name="powered_by_openweather" width="468" height="228"/>
         <image name="shower rain" width="1300" height="1182"/>
     </resources>
 </document>
